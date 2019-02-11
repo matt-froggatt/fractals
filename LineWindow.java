@@ -33,8 +33,8 @@ public class LineWindow extends JFrame {
 	public void paint(Graphics g) {
 		super.paint(g);
 		Graphics2D g2 = (Graphics2D) g;
-		for (Line2D line : lines) {
-			g2.draw(line);
+		for (int i = 0; i < lines.size(); i++) {
+			g2.draw(lines.get(i));
 		}
 	}
 
