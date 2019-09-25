@@ -1,7 +1,5 @@
 import javax.swing.JFrame;
 
-import com.sun.corba.se.impl.orbutil.graph.Graph;
-
 import java.awt.Dimension;
 import java.awt.geom.Line2D;
 import java.awt.Graphics;
@@ -24,14 +22,11 @@ public class FractalsMain{
 			// and then calls recursively to this method with new parameters.
 			pos.setLocation(x, y);
 			drawTreeRecurse(window, pos, (length * 2) / 3, theta + (Math.PI / 8));
-			
+
 			// Same as above. Positioning reset was required to avoid weird positioning issue caused by using the same
 			// Point object, since the previous positioning carries back through recursion.
 			pos.setLocation(x, y);			
 			drawTreeRecurse(window, pos, (length * 2) / 3, theta - (Math.PI / 8));
-
-			// Repaints the window to make sure the tree shows up.
-			window.repaint();
 		}
 	}
 
@@ -48,7 +43,15 @@ public class FractalsMain{
 		LineWindow window = new LineWindow(SIZE);
 		window.setVisible(true);
 
+		TreeBranch branch = new TreeBranch(new Point(500, window.getSize().height), 1000, Math.PI / 2, null);
+//		System.out.printf("Length: %f\n", branch.getLength());
+
+		//window.drawLineAngle(branch.getStartPoint(), branch.getLength(), branch.getAngle());
+
+		window.setTree(branch);
+
 		//Calls to drawTree() to let the recursive fun begin! 
 		drawTree(window);
+		window.repaint();
 	}
 }
